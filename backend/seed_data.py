@@ -24,7 +24,7 @@ if not UserProfile.objects.exists():
         role="Full Stack Developer",
         bio="Passionate developer building modern web applications with React and Django.",
         email="arumugamvimal1@gmail.com",
-        github_link="https://github.com/vimal-eng6.com",
+        github_link="https://github.com/vimal-eng6/portfolio.git",
         linkedin_link="https://www.linkedin.com/in/vimal-a-b5b358320.com"
     )
     print("Sample profile created.")
@@ -54,7 +54,7 @@ for item in [
             'description': "A full-stack portfolio built with React and Django.",
             'case_study': """The Challenge...""", # (Keeping existing text)
             'technologies_used': "React, Django, Tailwind CSS, Framer Motion",
-            'github_url': "https://github.com/vimal-eng6.com",
+            'github_url': "https://github.com/vimal-eng6/portfolio.git",
         }
     }
 ]:
