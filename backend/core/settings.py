@@ -150,3 +150,18 @@ REST_FRAMEWORK = {
     ]
 }
 
+# Gmail SMTP Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'arumugamvimal1@gmail.com' # Your email
+EMAIL_HOST_PASSWORD = '' # *** YOU MUST ENTER YOUR GMAIL APP PASSWORD HERE ***
+DEFAULT_FROM_EMAIL = f'Portfolio Team <arumugamvimal1@gmail.com>'
+ADMIN_EMAIL = 'arumugamvimal1@gmail.com' # Where inquiries will be sent
+
+# Session & Security (To fix login issues)
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+CSRF_COOKIE_SECURE = False   # Set to True in production with HTTPS

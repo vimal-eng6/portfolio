@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Command } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -48,79 +48,79 @@ const Navbar = () => {
     ];
 
     return (
-        <div className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'top-2' : 'top-6'} left-0 px-4 flex justify-center`}>
-            <nav className={`glass-pill px-6 py-3 transition-all duration-500 ${scrolled ? 'max-w-3xl py-2 opacity-95 scale-95 shadow-xl' : 'max-w-4xl shadow-2xl'}`}>
-                <div className="flex justify-between items-center gap-8">
-                    <div className="hidden md:flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className={`text-sm font-semibold transition-all hover:text-primary-500 relative group ${location.pathname === link.path ? 'text-primary-600 dark:text-primary-400' : 'text-slate-600 dark:text-slate-300'
-                                    }`}
-                            >
-                                {link.name}
-                                {location.pathname === link.path && (
-                                    <motion.div
-                                        layoutId="activeTab"
-                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-500 rounded-full"
-                                    />
-                                )}
-                                <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full group-hover:left-0 rounded-full" />
-                            </Link>
-                        ))}
-                        <div className="h-4 w-px bg-slate-200 dark:bg-slate-800 mx-2" />
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
-                        >
-                            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                        </button>
-                    </div>
+        <div className="fixed w-full z-50 left-0 px-4 pt-6 flex justify-center pointer-events-none">
+            <nav className={`glass-pill px-2 py-2 flex items-center gap-2 pointer-events-auto transition-all duration-700 ${scrolled ? 'bg-white/80 dark:bg-slate-900/80' : ''}`}>
+                <Link to="/" className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white ml-1">
+                    <Command size={20} />
+                </Link>
 
-                    <div className="md:hidden flex items-center w-full justify-between">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                <div className="hidden md:flex items-center px-4 space-x-1">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.name}
+                            to={link.path}
+                            className={`px-4 py-2 text-sm font-bold rounded-full transition-all relative group ${location.pathname === link.path 
+                                ? 'text-primary-600' 
+                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50'
+                            }`}
                         >
-                            {isOpen ? <X size={20} /> : <Menu size={20} />}
-                        </button>
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
-                        >
-                            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                        </button>
-                    </div>
+                            <span className="relative z-10">{link.name}</span>
+                            {location.pathname === link.path && (
+                                <motion.div
+                                    layoutId="navbar-active"
+                                    className="absolute inset-0 bg-primary-50 dark:bg-primary-900/20 rounded-full"
+                                    transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                                />
+                            )}
+                        </Link>
+                    ))}
                 </div>
 
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden overflow-hidden"
-                        >
-                            <div className="pt-4 pb-2 space-y-1">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        to={link.path}
-                                        onClick={() => setIsOpen(false)}
-                                        className={`block px-4 py-2 rounded-xl text-base font-medium transition-colors ${location.pathname === link.path
-                                            ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'
-                                            : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
-                                            }`}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 mx-2 hidden md:block" />
+
+                <button
+                    onClick={toggleTheme}
+                    className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors text-slate-600 dark:text-slate-400 mr-1"
+                >
+                    {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+
+                <div className="md:hidden pr-1">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="p-2.5 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                    >
+                        {isOpen ? <X size={18} /> : <Menu size={18} />}
+                    </button>
+                </div>
             </nav>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                        className="absolute top-24 left-4 right-4 glass rounded-[2rem] p-4 md:hidden pointer-events-auto"
+                    >
+                        <div className="flex flex-col gap-2">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    to={link.path}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`px-6 py-4 rounded-2xl text-lg font-bold transition-all ${location.pathname === link.path
+                                        ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
+                                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                                        }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

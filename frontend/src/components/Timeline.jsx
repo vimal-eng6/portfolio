@@ -1,49 +1,61 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const TimelineItem = ({ item, index }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-8 mb-12`}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative pl-12 pb-16 last:pb-0 group"
         >
-            {/* Timeline Dot */}
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-500 text-white shadow-lg z-10 shrink-0 md:order-1">
-                <Briefcase size={20} />
-            </div>
+            <div className="absolute left-0 top-0 h-full w-0.5 bg-slate-200 dark:bg-slate-800 group-last:h-12 transition-colors group-hover:bg-primary-500/30" />
+            
+            <motion.div 
+                whileHover={{ scale: 1.1 }}
+                className="absolute left-[-11px] top-0 flex items-center justify-center w-6 h-6 rounded-full bg-white dark:bg-slate-950 border-2 border-slate-200 dark:border-slate-800 z-10 group-hover:border-primary-500 transition-colors duration-300"
+            >
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-primary-500 transition-colors" />
+            </motion.div>
 
-            {/* Content Card */}
-            <div className="w-[calc(100%-4rem)] md:w-[45%] p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 group-hover:border-primary-500/50 transition-colors">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{item.role}</h3>
-                    <span className={`px-3 py-1 text-xs font-bold rounded-full ${item.is_current ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'}`}>
-                        {item.is_current ? 'Present' : 'Completed'}
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+                <div className="flex-shrink-0 w-full md:w-48 pt-0.5">
+                    <span className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">
+                        {new Date(item.start_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} — {item.end_date ? new Date(item.end_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'PRESENT'}
                     </span>
-                </div>
-                
-                <div className="flex flex-col gap-2 text-sm text-slate-500 dark:text-slate-400 mb-4">
-                    <div className="flex items-center gap-2">
-                        <span className="font-semibold text-primary-600 dark:text-primary-400">{item.company}</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                            <Calendar size={14} />
-                            <span>{new Date(item.start_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {item.end_date ? new Date(item.end_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Present'}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <MapPin size={14} />
-                            <span>{item.location}</span>
-                        </div>
+                    <div className="mt-2 flex items-center gap-2">
+                        <MapPin size={12} className="text-slate-300 dark:text-slate-600" />
+                        <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider font-bold">{item.location}</span>
                     </div>
                 </div>
 
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
-                    {item.description}
-                </p>
+                <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="flex-grow bento-card p-10 !rounded-[2rem]"
+                >
+                    <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
+                        <div>
+                            <h3 className="text-3xl font-black tracking-tighter text-slate-900 dark:text-white mb-2 uppercase group-hover:text-primary-600 transition-colors">
+                                {item.role}
+                            </h3>
+                            <p className="text-xl font-black italic tracking-tight text-primary-600 dark:text-primary-400">
+                                {item.company}
+                            </p>
+                        </div>
+                        {item.is_current && (
+                            <span className="flex items-center gap-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit">
+                                <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 dark:text-primary-400">ACTIVE ROLE</span>
+                            </span>
+                        )}
+                    </div>
+
+                    <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed font-medium">
+                        {item.description}
+                    </p>
+                </motion.div>
             </div>
         </motion.div>
     );
@@ -53,10 +65,12 @@ const Timeline = ({ items }) => {
     if (!items || items.length === 0) return null;
 
     return (
-        <div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-800 before:to-transparent">
-            {items.map((item, index) => (
-                <TimelineItem key={item.id} item={item} index={index} />
-            ))}
+        <div className="max-w-5xl mx-auto py-12">
+            <div className="relative">
+                {items.map((item, index) => (
+                    <TimelineItem key={item.id} item={item} index={index} />
+                ))}
+            </div>
         </div>
     );
 };

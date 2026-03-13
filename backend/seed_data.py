@@ -49,12 +49,12 @@ print("Sample skills created (refreshed).")
 # 4. Create Sample Projects
 for item in [
     {
-        'title': "Portfolio Project",
+        'title': "",
         'defaults': {
-            'description': "A full-stack portfolio built with React and Django.",
-            'case_study': """The Challenge...""", # (Keeping existing text)
-            'technologies_used': "React, Django, Tailwind CSS, Framer Motion",
-            'github_url': "https://github.com/vimal-eng6/portfolio.git",
+            'description': "",
+            'case_study': """""", # (Keeping existing text)
+            'technologies_used': "",
+            'github_url': "",
         }
     }
 ]:
@@ -66,7 +66,7 @@ from users.models import Experience
 for item in [
     {
         'company': "CALDIM",
-        'role': "Full Stack Developer",
+        'role': "Software Developer",
         'defaults': {
             'location': "Hosur, TN",
             'start_date': "2026-03-12",
