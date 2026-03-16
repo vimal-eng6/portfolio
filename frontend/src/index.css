@@ -61,11 +61,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
 }
 
-.glass {
+@utility glass {
   @apply bg-white/70 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/20 dark:border-slate-800/50 shadow-2xl;
 }
 
-.glass-pill {
+@utility glass-pill {
   @apply bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/30 dark:border-slate-800/30 rounded-full shadow-2xl transition-all duration-500;
 }
 
@@ -90,6 +90,6 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors;
 }
 
-.bento-card {
-  @apply glass rounded-[2.5rem] p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-primary-500/10;
+@utility bento-card {
+  @apply bg-white/70 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/20 dark:border-slate-800/50 shadow-2xl rounded-[2.5rem] p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-primary-500/10;
 }
