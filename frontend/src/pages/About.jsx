@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ExternalLink, Award, Coffee, BookOpen } from 'lucide-react';
 import { fetchProfile, fetchExperience } from '../services/api';
 import Timeline from '../components/Timeline';
+import profileImage from '../assets/profile.jpg';
 
 const About = () => {
     const [profile, setProfile] = useState(null);
@@ -60,7 +61,7 @@ const About = () => {
                     <motion.div variants={itemVariants} className="lg:col-span-4 bento-card p-4">
                         <div className="aspect-[4/5] rounded-[2rem] overflow-hidden grayscale-0 hover:grayscale transition-all duration-1000 border-2 border-white/10 shadow-2xl animate-float">
                             <img 
-                                src={profile?.profile_image || 'https://via.placeholder.com/800'} 
+                                src={profileImage} 
                                 alt="Profile" 
                                 className="w-full h-full object-cover object-top scale-100 hover:scale-105 transition-transform duration-700" 
                             />
@@ -70,13 +71,13 @@ const About = () => {
                     {/* Stats/Quick Info Grid */}
                     <motion.div variants={itemVariants} className="lg:col-span-4 bento-card flex flex-col items-center justify-center text-center">
                         <Award className="text-primary-600 mb-4" size={48} />
-                        <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">3+ Years</h3>
+                        <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">1+ years</h3>
                         <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Experience</p>
                     </motion.div>
                     
                     <motion.div variants={itemVariants} className="lg:col-span-4 bento-card flex flex-col items-center justify-center text-center">
                         <Coffee className="text-indigo-600 mb-4" size={48} />
-                        <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">50+</h3>
+                        <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-2">3</h3>
                         <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Projects</p>
                     </motion.div>
 

@@ -4,6 +4,8 @@ import { Download, ArrowRight, Star, Sparkles, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchProfile, fetchProjects } from '../services/api';
 
+import profileImage from '../assets/profile.jpg';
+
 const Home = () => {
     const [profile, setProfile] = useState(null);
     const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -77,7 +79,7 @@ const Home = () => {
                             <div className="relative glass rounded-[3.5rem] overflow-hidden rotate-2 group-hover:rotate-0 transition-transform duration-700 shadow-2xl animate-float">
                                <div className="aspect-[4/5] relative overflow-hidden">
                                    <img 
-                                        src={profile?.profile_image || 'https://via.placeholder.com/600'} 
+                                        src={profileImage} 
                                         alt="Profile" 
                                         className="w-full h-full object-cover object-top grayscale-0 hover:scale-110 transition-all duration-1000"
                                     />
