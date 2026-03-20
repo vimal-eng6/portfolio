@@ -29,7 +29,7 @@ UserProfile.objects.update_or_create(
         'email': "arumugamvimal1@gmail.com",
         'github_link': "https://github.com/vimal-eng6/portfolio.git",
         'linkedin_link': ("https://www.linkedin.com/in/"
-                          "vimal-a-b5b358320.com")
+                          "vimal-a-b5b358320")
     }
 )
 print("Sample profile updated/created.")

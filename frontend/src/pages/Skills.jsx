@@ -8,7 +8,13 @@ import {
 import { fetchSkills } from '../services/api';
 
 const Skills = () => {
-    const [skills, setSkills] = useState([]);
+    const [skills, setSkills] = useState([
+        { id: 'f1', name: 'React', category: 'Frontend', proficiency_level: 90 },
+        { id: 'f2', name: 'Tailwind CSS', category: 'Frontend', proficiency_level: 85 },
+        { id: 'b1', name: 'Django', category: 'Backend', proficiency_level: 85 },
+        { id: 'b2', name: 'Python', category: 'Backend', proficiency_level: 90 },
+        { id: 'd1', name: 'PostgreSQL', category: 'Database', proficiency_level: 80 }
+    ]);
 
     useEffect(() => {
         fetchSkills().then(res => setSkills(res.data)).catch(err => console.error(err));

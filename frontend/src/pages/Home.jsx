@@ -7,7 +7,14 @@ import { fetchProfile, fetchProjects } from '../services/api';
 import profileImage from '../assets/profile.jpg';
 
 const Home = () => {
-    const [profile, setProfile] = useState(null);
+    const [profile, setProfile] = useState({
+        name: "Vimal",
+        role: "Full Stack Developer",
+        bio: "Passionate developer building modern web applications with React and Django.",
+        email: "arumugamvimal1@gmail.com",
+        github_link: "https://github.com/vimal-eng6",
+        linkedin_link: "https://www.linkedin.com/in/vimal-a-b5b358320"
+    });
     const [featuredProjects, setFeaturedProjects] = useState([]);
 
     useEffect(() => {

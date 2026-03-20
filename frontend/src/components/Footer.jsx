@@ -4,7 +4,13 @@ import { Github, Linkedin, Mail, ArrowUpRight, Cpu, Globe, Zap, Send, Code, Laye
 import { motion } from 'framer-motion';
 
 const Footer = () => {
-    const [profile, setProfile] = React.useState(null);
+    const [profile, setProfile] = React.useState({
+        name: "Vimal",
+        role: "Full Stack Developer",
+        github_link: "https://github.com/vimal-eng6",
+        linkedin_link: "https://www.linkedin.com/in/vimal-a-b5b358320",
+        email: "arumugamvimal1@gmail.com"
+    });
     const [email, setEmail] = React.useState('');
     const navigate = useNavigate();
 
