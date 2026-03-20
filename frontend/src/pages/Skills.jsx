@@ -9,11 +9,15 @@ import { fetchSkills } from '../services/api';
 
 const Skills = () => {
     const [skills, setSkills] = useState([
-        { id: 'f1', name: 'React', category: 'Frontend', proficiency_level: 90 },
-        { id: 'f2', name: 'Tailwind CSS', category: 'Frontend', proficiency_level: 85 },
-        { id: 'b1', name: 'Django', category: 'Backend', proficiency_level: 85 },
-        { id: 'b2', name: 'Python', category: 'Backend', proficiency_level: 90 },
-        { id: 'd1', name: 'PostgreSQL', category: 'Database', proficiency_level: 80 }
+        { id: 's1', name: 'HTML/CSS', category: 'frontend', proficiency_level: 50 },
+        { id: 's2', name: 'JavaScript', category: 'frontend', proficiency_level: 50 },
+        { id: 's3', name: 'React', category: 'frontend Framework', proficiency_level: 50 },
+        { id: 's4', name: 'Tailwind CSS', category: 'frontend Framework', proficiency_level: 60 },
+        { id: 's5', name: 'Python', category: 'backend', proficiency_level: 70 },
+        { id: 's6', name: 'SQL[DB]', category: 'backend', proficiency_level: 50 },
+        { id: 's7', name: 'Django', category: 'backend Framework', proficiency_level: 50 },
+        { id: 's8', name: 'Manual Testing', category: 'testing', proficiency_level: 70 },
+        { id: 's9', name: 'Git', category: 'tools', proficiency_level: 50 }
     ]);
 
     useEffect(() => {
