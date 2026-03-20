@@ -1,6 +1,7 @@
 from django.utils.text import slugify
 from django.db import models
 
+
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)

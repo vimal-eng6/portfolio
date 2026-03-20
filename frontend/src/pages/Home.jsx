@@ -66,7 +66,7 @@ const Home = () => {
                                 EXPLORE WORK
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                             </Link>
-                            <a href={profile?.resume_file} download className="px-8 py-5 glass dark:bg-slate-900 font-black rounded-3xl hover:scale-105 transition-all flex items-center gap-3">
+                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-5 glass dark:bg-slate-900 font-black rounded-3xl hover:scale-105 transition-all flex items-center gap-3">
                                 RESUME
                                 <Download size={20} />
                             </a>
