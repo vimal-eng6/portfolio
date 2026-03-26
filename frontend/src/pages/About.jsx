@@ -7,7 +7,16 @@ import profileImage from '../assets/profile.jpg';
 
 const About = () => {
     const [profile, setProfile] = useState(null);
-    const [experience, setExperience] = useState([]);
+    const [experience, setExperience] = useState([
+        {
+            company: "CALDIM",
+            role: "Software Developer",
+            location: "Hosur, TN",
+            start_date: "2026-03-12",
+            is_current: true,
+            description: "Built a scalable full-stack web application using React and Django, implementing RESTful APIs, user authentication, and database integration."
+        }
+    ]);
 
     useEffect(() => {
         fetchProfile().then(res => {

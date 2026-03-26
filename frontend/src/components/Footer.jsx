@@ -23,13 +23,12 @@ const Footer = () => {
         });
     }, []);
 
-    const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Projects', path: '/projects' },
-        { name: 'Skills', path: '/skills' },
-        
-        { name: 'Contact', path: '/contact' },
+
+    const services = [
+        { name: 'Web Development', icon: <Code size={14} /> },
+        { name: 'UI/UX Design', icon: <Layers size={14} /> },
+        { name: 'API Architecture', icon: <Cpu size={14} /> },
+        { name: 'Performance Tuning', icon: <Zap size={14} /> },
     ];
 
     const techStack = [
@@ -63,7 +62,7 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -79,7 +78,7 @@ const Footer = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                     >
-                        <button 
+                        <button
                             onClick={() => navigate('/contact')}
                             className="group relative px-8 py-4 bg-primary-600 dark:bg-primary-500 text-white font-bold rounded-2xl overflow-hidden transition-all hover:pr-12 cursor-pointer shadow-xl shadow-primary-500/20"
                         >
@@ -90,7 +89,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bento Grid Layout */}
-                <motion.div 
+                <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -119,24 +118,28 @@ const Footer = () => {
                                 { icon: <Linkedin size={20} />, link: profile?.linkedin_link, label: 'LinkedIn' },
                                 { icon: <Mail size={20} />, link: profile?.email ? `mailto:${profile.email}` : '#', label: 'Email' },
                             ].map((social, i) => (
-                                <a key={i} href={social.link || "#"} target="_blank" rel="noopener noreferrer" 
-                                   className="text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <a key={i} href={social.link || "#"} target="_blank" rel="noopener noreferrer"
+                                    className="text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                                     {social.icon}
                                 </a>
                             ))}
                         </div>
                     </motion.div>
 
-                    {/* Quick Links Card */}
+                    {/* Services Card */}
                     <motion.div variants={itemVariants} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
-                        <span className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-6">Navigation</span>
+                        <span className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-6">Services</span>
                         <ul className="space-y-4">
-                            {navLinks.map((link) => (
-                                <li key={link.name}>
-                                    <Link to={link.path} className="group flex items-center justify-between text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors">
-                                        {link.name}
-                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                                    </Link>
+                            {services.map((service) => (
+                                <li key={service.name}>
+                                    <div className="group flex items-center justify-between text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors cursor-default">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-slate-400 group-hover:text-primary-500 transition-colors">
+                                                {service.icon}
+                                            </span>
+                                            {service.name}
+                                        </div>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -151,8 +154,8 @@ const Footer = () => {
                             <h4 className="text-2xl font-bold mb-4">Stay updated</h4>
                             <p className="text-primary-100/80 text-sm mb-6">Get my latest project updates and tech insights delivered.</p>
                             <div className="relative">
-                                <input 
-                                    type="email" 
+                                <input
+                                    type="email"
                                     placeholder="your@email.com"
                                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:bg-white/30 transition-all text-sm"
                                     value={email}
@@ -197,9 +200,9 @@ const Footer = () => {
 
                     {/* Fun Mini Card */}
                     <motion.div variants={itemVariants} className="p-8 rounded-3xl bg-indigo-600 dark:bg-indigo-500 text-white flex flex-col items-center justify-center text-center group cursor-pointer overflow-hidden relative">
-                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                         <span className="text-sm font-bold uppercase tracking-widest opacity-80 mb-2">Vibe</span>
-                         <span className="text-3xl font-black italic tracking-tighter">100% DIY</span>
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className="text-sm font-bold uppercase tracking-widest opacity-80 mb-2">Vibe</span>
+                        <span className="text-3xl font-black italic tracking-tighter">100% DIY</span>
                     </motion.div>
                 </motion.div>
 
@@ -215,8 +218,8 @@ const Footer = () => {
                         <Link to="/privacy" className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-primary-600 transition-colors">Privacy</Link>
                         <Link to="/terms" className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-primary-600 transition-colors">Terms</Link>
                         <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400">
-                             <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                             <span className="text-[10px] font-black uppercase tracking-widest">Version 2.0.0</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                            <span className="text-[10px] font-black uppercase tracking-widest">Version 2.0.0</span>
                         </div>
                     </div>
                 </div>
